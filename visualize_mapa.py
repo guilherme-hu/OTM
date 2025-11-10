@@ -14,12 +14,15 @@ Se quiser visualização interativa, abra o arquivo PNG ou modifique para exibir
 import csv
 from pathlib import Path
 import math
+import re
 
 # for non-interactive environments
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
+import numpy as np
+from matplotlib.lines import Line2D
 
 BASE = Path(r"c:\Users\guilh\OneDrive\Faculdade\FACULDADE\6° período\OTM\Trab")
 PONTOS_CSV = BASE / 'pontos.csv'
@@ -105,10 +108,35 @@ for seg in segments:
 px = []
 py = []
 plabels = []
+pcolors = []
+def point_color(name: str) -> str:
+    n = (name or '').strip()
+    nl = n.lower()
+    # Stations / trains -> blue (explicit)
+    if 'estacao' in nl or 'trem' in nl:
+        return 'tab:blue'
+    # Sonhadores (objetivos) -> gold (very special)
+    if re.search(r'(?i)sonh', n):
+        return 'gold'
+    # Alavancas (contains 'Alavanca') -> purple
+    if re.search(r'(?i)alavanc', n):
+        return 'tab:purple'
+    # Nodes that require a power: start with literal N followed by letters (e.g. NLL, NL, NVR)
+    if re.match(r'^N[A-Z]+[0-9]*$', n):
+        return 'tab:orange'
+    # Simple nodes: letters followed by digits (A1, H11, K8)
+    if re.match(r'^[A-Za-z]+[0-9]+$', n):
+        return 'tab:gray'
+    # Big named things (single word, mostly letters, length >=5) -> highlight
+    if len(n) >= 5 and re.match(r'^[A-Za-z]+$', n):
+        return 'tab:green'
+    # fallback: other special names
+    return 'tab:red'
 for name,(x,y) in points.items():
     px.append(x)
     py.append(y)
     plabels.append(name)
+    pcolors.append(point_color(name))
 # Compute a sensible marker size based on map scale and point density
 try:
     # estimate closest neighbor distance (O(n^2) but n is moderate here)
@@ -131,7 +159,7 @@ except Exception:
 
 # marker size in points^2 (approx); inversely proportional to density
 marker_size = max(6, min(60, (min(dx,dy) / (min_dist + 1e-9)) * 3))
-ax.scatter(px, py, c='red', s=marker_size, zorder=2)
+ax.scatter(px, py, c=pcolors, s=marker_size, edgecolor='k', linewidth=0.3, zorder=2)
 
 # Annotate all labels but scale font size and offset according to local density
 x_range = maxx - minx if maxx>minx else 1.0
@@ -168,17 +196,17 @@ for name, (x, y) in points.items():
                 break
         if not collision:
             ax.annotate(name, (lx, ly), fontsize=font_size,
-                        bbox=dict(facecolor='white', alpha=0.7, edgecolor='none'),
+                        bbox=dict(boxstyle='round,pad=0.12', facecolor='white', alpha=0.6, edgecolor='none'),
                         zorder=3)
             placed_labels.append((lx, ly))
             placed = True
             break
-    if not placed:
-        # as a last resort, place with very small font and lower opacity to avoid clutter
-        ax.annotate(name, (x + off, y + off), fontsize=max(3, font_size - 2),
-                    color='gray', alpha=0.6,
-                    bbox=dict(facecolor='white', alpha=0.6, edgecolor='none'),
-                    zorder=2)
+        if not placed:
+            # as a last resort, place with very small font and lower opacity to avoid clutter
+            ax.annotate(name, (x + off, y + off), fontsize=max(3, font_size - 2),
+                        color='gray', alpha=0.6,
+                        bbox=dict(boxstyle='round,pad=0.08', facecolor='white', alpha=0.6, edgecolor='none'),
+                        zorder=2)
 
 ax.set_xlim(minx - padx, maxx + padx)
 ax.set_ylim(miny - pady, maxy + pady)
@@ -191,6 +219,18 @@ ax.set_ylabel('Y')
 ax.text(0.99, 0.01, f'Pontos: {len(points)}\nSegmentos: {len(segments)}',
         transform=ax.transAxes, ha='right', va='bottom', fontsize=8,
         bbox=dict(facecolor='white', alpha=0.7, edgecolor='none'))
+
+# color legend for point types
+legend_handles = [
+    Line2D([0], [0], marker='o', color='w', label='Estacao/Trem', markerfacecolor='tab:blue', markersize=6),
+    Line2D([0], [0], marker='o', color='w', label='Sonhadores (objetivos)', markerfacecolor='gold', markersize=6),
+    Line2D([0], [0], marker='o', color='w', label='Alavanca', markerfacecolor='tab:purple', markersize=6),
+    Line2D([0], [0], marker='o', color='w', label='Node N[A-Z]+', markerfacecolor='tab:orange', markersize=6),
+    Line2D([0], [0], marker='o', color='w', label='Simple (A1,H11)', markerfacecolor='tab:gray', markersize=6),
+    Line2D([0], [0], marker='o', color='w', label='Large name (Frase)', markerfacecolor='tab:green', markersize=6),
+    Line2D([0], [0], marker='o', color='w', label='Outros', markerfacecolor='tab:red', markersize=6),
+]
+ax.legend(handles=legend_handles, loc='upper left', fontsize=8, framealpha=0.9)
 
 # Save
 fig.tight_layout()
@@ -218,6 +258,12 @@ OUT_PNG_BG = BASE / 'mapa_plot_bg.png'
 if IMG_PATH.exists():
     try:
         img = mpimg.imread(str(IMG_PATH))
+        # flip the image vertically so it displays right-side-up on the plot
+        try:
+            img = np.flipud(img)
+        except Exception:
+            # if flip fails (e.g., unexpected array shape), fall back to original
+            pass
         ih, iw = img.shape[0], img.shape[1]
         # map image width to x in [0,700]; scale y accordingly
         scale = 700.0 / float(iw)
@@ -231,24 +277,25 @@ if IMG_PATH.exists():
         # show image with origin at lower so (0,0) is bottom-left
         ax2.imshow(img, extent=[0, 700, 0, img_height_scaled], origin='lower')
 
-        # draw segments on top (flip Y to match image origin: bottom-left = (0,0))
+        # draw segments on top (plot using image coords: bottom-left = (0,0))
         for seg in segments:
             s = seg['start']
             e = seg['end']
             if s in points and e in points:
                 x1,y1 = points[s]
                 x2,y2 = points[e]
-                y1p = img_height_scaled - y1
-                y2p = img_height_scaled - y2
-                ax2.plot([x1,x2],[y1p,y2p], color='gray', linewidth=1, zorder=2)
+                ax2.plot([x1,x2],[y1,y2], color='gray', linewidth=1, zorder=2)
 
         # draw points
-        # flip Y for plotting on image: image lower edge is y=0
+        # use point coordinates directly (image origin is set to lower so (0,0) is bottom-left)
         px2 = [c[0] for c in points.values()]
-        py2 = [img_height_scaled - c[1] for c in points.values()]
+        py2 = [c[1] for c in points.values()]
         # adapt marker size for image plot
         marker_size2 = marker_size
-        ax2.scatter(px2, py2, c='red', s=marker_size2, zorder=3)
+        # build color list for image overlay in same order as points.values()
+        pkeys = list(points.keys())
+        colors2 = [point_color(k) for k in pkeys]
+        ax2.scatter(px2, py2, c=colors2, s=marker_size2, edgecolor='k', linewidth=0.3, zorder=3)
 
         # place labels using same heuristic but constrained to image extent
         placed_labels = []
@@ -260,9 +307,9 @@ if IMG_PATH.exists():
         for name, (x, y) in points.items():
             placed = False
             for dx_off, dy_off in offset_options:
-                # compute candidate label position and flip Y to image coords
+                # compute candidate label position in image coords
                 lx = x + dx_off
-                ly = img_height_scaled - (y + dy_off)
+                ly = y + dy_off
                 # ensure label anchor inside image bounds
                 if lx < 0 or lx > 700 or ly < 0 or ly > img_height_scaled:
                     continue
@@ -273,15 +320,15 @@ if IMG_PATH.exists():
                         break
                 if not collision:
                     ax2.annotate(name, (lx, ly), fontsize=font_size,
-                                 bbox=dict(facecolor='white', alpha=0.7, edgecolor='none'),
-                                 zorder=4)
+                                     bbox=dict(boxstyle='round,pad=0.10', facecolor='white', alpha=0.7, edgecolor='none'),
+                                     zorder=4)
                     placed_labels.append((lx, ly))
                     placed = True
                     break
             if not placed:
-                ax2.annotate(name, (x + off, img_height_scaled - (y + off)), fontsize=max(3, font_size - 2),
+                ax2.annotate(name, (x + off, y + off), fontsize=max(3, font_size - 2),
                              color='gray', alpha=0.6,
-                             bbox=dict(facecolor='white', alpha=0.6, edgecolor='none'),
+                             bbox=dict(boxstyle='round,pad=0.08', facecolor='white', alpha=0.6, edgecolor='none'),
                              zorder=3)
 
         ax2.set_xlim(0, 700)
@@ -292,43 +339,6 @@ if IMG_PATH.exists():
         fig2.tight_layout()
         fig2.savefig(OUT_PNG_BG, dpi=200)
         print('Imagem com fundo salva em:', OUT_PNG_BG)
-        # Also write an alternative orientation (image shown with origin='upper' and points plotted without Y-flip)
-        OUT_PNG_BG_ALT = BASE / 'mapa_plot_bg.png'
-        try:
-            fig3_w = fig2_w
-            fig3_h = fig2_h
-            fig3 = plt.figure(figsize=(fig3_w, fig3_h))
-            ax3 = fig3.add_subplot(1,1,1)
-            # show image with origin at upper (alternate) and same extent
-            ax3.imshow(img, extent=[0, 700, 0, img_height_scaled], origin='upper')
-
-            # draw segments and points without flipping Y
-            for seg in segments:
-                s = seg['start']
-                e = seg['end']
-                if s in points and e in points:
-                    x1,y1 = points[s]
-                    x2,y2 = points[e]
-                    ax3.plot([x1,x2],[y1,y2], color='gray', linewidth=1, zorder=2)
-
-            px3 = [c[0] for c in points.values()]
-            py3 = [c[1] for c in points.values()]
-            ax3.scatter(px3, py3, c='red', s=marker_size, zorder=3)
-
-            # simple labels (no advanced collision for alt)
-            for name,(x,y) in points.items():
-                ax3.annotate(name, (x + off, y + off), fontsize=font_size,
-                             bbox=dict(facecolor='white', alpha=0.7, edgecolor='none'), zorder=4)
-
-            ax3.set_xlim(0, 700)
-            ax3.set_ylim(0, img_height_scaled)
-            ax3.set_aspect('equal', adjustable='box')
-            fig3.tight_layout()
-            fig3.savefig(OUT_PNG_BG_ALT, dpi=200)
-            print('Imagem alternativa com fundo salva em:', OUT_PNG_BG_ALT)
-        except Exception:
-            # non-fatal: ignore alternate save errors
-            pass
     except Exception as exc:
         print('Falha ao gerar imagem com fundo:', exc)
 else:

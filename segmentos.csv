@@ -34,8 +34,8 @@ t1,O,AlavancaC1,7
 a1,O,N,16.3
 c1,C1,D1,6.9
 d1,D1,NDD2,7.7
-e1,J,E1,22.3
-f2,E1,F1,33.8
+e1,J,FINALBOSS,22.3
+f2,FINALBOSS,F1,33.8
 g2,F1,G1,10.1
 b1,AlavancaC1,G1,7.5
 h2,G1,C1,19.7
@@ -161,7 +161,7 @@ l8,K4,L4,4.5
 m8,L4,M4,4.2
 n8,L4,N4,4.5
 p8,N4,O4,3.8
-s8,M4,BarragemB,3.9
+s8,M4,AlavancaD8,3.9
 t8,R4,S4,4.1
 a8,S4,T4,2.2
 b8,T4,U4,1.8
@@ -438,8 +438,8 @@ e22,H12,I12,15.9
 f23,I12,J12,15
 g23,K12,L12,7.8
 h23,L12,J12,13
-i23,K12,BarragemB,12.4
-j23,BarragemB,M12,15.1
+i23,K12,AlavancaD8,12.4
+j23,AlavancaD8,M12,15.1
 k23,M12,N12,11.9
 l23,N12,O12,21.8
 m23,O12,PASSEBONDE,28.2
@@ -469,8 +469,8 @@ r24,J13,K13,6.9
 s24,K13,L13,4.3
 t24,L13,M13,5.2
 a24,M13,N13,17.2
-b24,N13,O13,16.1
-c24,O13,Estacao,26.1
+b24,N13,SONHADOR3,16.1
+c24,SONHADOR3,Estacao,26.1
 d24,Estacao,Estacao3,164.8
 e24,Estacao,Estacao1,174.8
 f25,Estacao,Estacao2,313

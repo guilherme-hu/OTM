@@ -25,7 +25,7 @@ k,V,H,32.4
 l1,H,Slyloja,7.4
 m1,Slyloja,Z,7.5
 n1,Z,A1,9.7
-p1,A1,Npasse,9.8
+p1,A1,NPasse,9.8
 q1,A1,B1,9.1
 r1,B1,P,22.8
 s1,T,P,12.9
@@ -72,7 +72,7 @@ s3,NCC1,P1,24.1
 t3,P1,AlavancaP1_NCC1,16.9
 a3,Q1,ND2,41.5
 b3,O1,Z1,9.5
-c3,Z1,Nluz1,34.4
+c3,Z1,NL11,34.4
 d3,Z1,ND3,8.5
 e3,ND3,NEP,46.1
 f4,Z1,I,15.2
@@ -275,8 +275,8 @@ m14,B8,Estacao4,12.0
 n14,Estacao4,Estacao3,0.0
 p14,Estacao4,Estacao1,0.0
 q14,Estacao4,Estacao2,0.0
-r14,A8,Npasse1,37.7
-s14,Npasse,Npasse1,49.4
+r14,A8,NPasse1,37.7
+s14,NPasse,NPasse1,49.4
 t14,NEP3,BrasaoCidade,26.4
 a14,BrasaoCidade,C8,22.3
 b14,C8,AlavancaC8,5.4
@@ -481,11 +481,11 @@ a22,F12,P13,26.1
 j25,P13,Q13,6.6
 k25,Q13,R13,8.4
 l25,R13,S13,6.1
-m25,S13,Trem1,10.7
+m25,S13,NTrem1,10.7
 n25,Q13,T13,5.0
-p25,Trem1,Trem,154.5
-q25,Trem,Trem2,89.1
-r25,Trem2,U13,25.4
+p25,NTrem1,NTrem,154.5
+q25,NTrem,NTrem2,89.1
+r25,NTrem2,U13,25.4
 s25,U13,V13,17.6
 t25,V13,W13,16.2
 a25,W13,NCHorLI,11.5
@@ -520,6 +520,6 @@ j27,Q14,G11,12.5
 k27,Q14,R14,13.8
 l27,R14,O10,36.4
 m27,R14,G11,12.6
-n27,Trem,S14,8.3
+n27,NTrem,S14,8.3
 p27,S14,T14,11.8
 q27,T14,D11,34.4

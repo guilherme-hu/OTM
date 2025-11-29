@@ -1,0 +1,22 @@
+{
+  "start": "START",
+  "exit": "FINALBOSS",
+  "sonhadores": [
+    "Sonhador1",
+    "Sonhador2",
+    "Sonhador3"
+  ],
+  "powers": {
+    "MANTIS_CLAW": "MantisClaw",
+    "MOTHWING_CLOAK": "Dash",
+    "CRYSTAL_HEART": "CrystalHeart",
+    "ISMAS_TEAR": "LagrimaIsma",
+    "DREAM_NAIL": "FERRAOSONHOS",
+    "VENGEFUL_SPIRIT": "VengefulSpirit",
+    "DESOLATE_DIVE": "DesolateDive"
+  },
+  "requires": {},
+  "levers": {},
+  "stations": [],
+  "teleport_cost": 0.1
+}

@@ -1,0 +1,5 @@
+min_grafo = 0
+max_grafo = 100
+Start: Start
+End: K1
+requisitos: Slyloja

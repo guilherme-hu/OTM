@@ -1,8 +1,8 @@
 {
-  "start": "K1",
-  "exit": "Estacao1",
+  "start": "START",
+  "exit": "K1",
   "sonhadores": [
-    "D2"
+    "Slyloja"
   ],
   "powers": {
     "MANTIS_CLAW": "MantisClaw",
@@ -18,81 +18,40 @@
     "DREAM_NAIL": "FERRAOSONHOS"
   },
   "requires": {
+    "NVR": [
+      "VENGEFUL_SPIRIT"
+    ],
+    "ND1": [
+      "MOTHWING_CLOAK"
+    ],
+    "NPasse": [
+      "TRAM_PASS"
+    ],
+    "NDD2": [
+      "MOTHWING_CLOAK"
+    ],
     "ND2": [
       "MOTHWING_CLOAK"
-    ],
-    "NCC1": [
-      "CRYSTAL_HEART"
-    ],
-    "NL11": [
-      "LUMAFLY_LANTERN"
-    ],
-    "ND3": [
-      "MOTHWING_CLOAK"
-    ],
-    "NEP": [
-      "MANTIS_CLAW"
-    ],
-    "NSD1": [
-      "SHADE_CLOAK"
-    ],
-    "ND4": [
-      "MOTHWING_CLOAK"
-    ],
-    "NSD": [
-      "SHADE_CLOAK"
-    ],
-    "NEP1": [
-      "MANTIS_CLAW"
-    ],
-    "NLI1": [
-      "ISMAS_TEAR"
-    ],
-    "ND5": [
-      "MOTHWING_CLOAK"
-    ],
-    "NDD1": [
-      "MOTHWING_CLOAK"
-    ],
-    "NLI": [
-      "ISMAS_TEAR"
-    ],
-    "NEP2": [
-      "MANTIS_CLAW"
-    ],
-    "NEP3": [
-      "MANTIS_CLAW"
     ]
   },
   "visit_requirements": {},
   "levers": {
+    "AlavancaO": [
+      "O"
+    ],
     "AlavancaR": [
       "R"
-    ],
-    "AlavancaR1": [
-      "R1"
-    ],
-    "AlavancaP1_NCC1": [
-      "P1",
-      "NCC1"
-    ],
-    "AlavancaE2": [
-      "E2"
-    ],
-    "AlavancaM2": [
-      "M2"
     ]
   },
   "stations": [
-    "Estacao1",
-    "Estacao3"
+    "Estacao2"
   ],
   "single_use_edges": [],
   "teleport_cost": 0.1,
   "metadata": {
     "description": "Configuração gerada automaticamente do grafo NetworkX",
-    "total_nodes": 62,
-    "total_edges": 124,
+    "total_nodes": 48,
+    "total_edges": 104,
     "generation_timestamp": "auto-generated"
   }
 }

@@ -1,0 +1,5 @@
+min_grafo = 80
+max_grafo = 200
+Start: K1
+End: Estacao1
+requisitos: D2

@@ -50,37 +50,16 @@
     ],
     "ND5": [
       "MOTHWING_CLOAK"
-    ],
-    "NDD1": [
-      "MOTHWING_CLOAK"
-    ],
-    "NLI": [
-      "ISMAS_TEAR"
-    ],
-    "NEP2": [
-      "MANTIS_CLAW"
-    ],
-    "NEP3": [
-      "MANTIS_CLAW"
     ]
   },
   "visit_requirements": {},
   "levers": {
-    "AlavancaR": [
-      "R"
-    ],
     "AlavancaR1": [
       "R1"
     ],
     "AlavancaP1_NCC1": [
       "P1",
       "NCC1"
-    ],
-    "AlavancaE2": [
-      "E2"
-    ],
-    "AlavancaM2": [
-      "M2"
     ]
   },
   "stations": [
@@ -91,8 +70,8 @@
   "teleport_cost": 0.1,
   "metadata": {
     "description": "Configuração gerada automaticamente do grafo NetworkX",
-    "total_nodes": 62,
-    "total_edges": 124,
+    "total_nodes": 39,
+    "total_edges": 79,
     "generation_timestamp": "auto-generated"
   }
 }

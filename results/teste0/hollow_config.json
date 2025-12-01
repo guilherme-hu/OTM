@@ -1,0 +1,264 @@
+{
+  "start": "START",
+  "exit": "FINALBOSS",
+  "sonhadores": [
+    "FERRAOSONHOS",
+    "SONHADOR1",
+    "SONHADORA2",
+    "SONHADOR3"
+  ],
+  "powers": {
+    "MANTIS_CLAW": "MantisClaw",
+    "MOTHWING_CLOAK": "Dash",
+    "CRYSTAL_HEART": "CrystalHeart",
+    "ISMAS_TEAR": "LagrimaIsma",
+    "MONARCH_WINGS": "AsasMonarca",
+    "SHADE_CLOAK": "ShadeDash",
+    "LUMAFLY_LANTERN": "Luz",
+    "TRAM_PASS": "PASSEBONDE",
+    "VENGEFUL_SPIRIT": "VengefulSpirit",
+    "DESOLATE_DIVE": "DesolateDive",
+    "DREAM_NAIL": "FERRAOSONHOS"
+  },
+  "requires": {
+    "NVR": [
+      "VENGEFUL_SPIRIT"
+    ],
+    "ND1": [
+      "MOTHWING_CLOAK"
+    ],
+    "NPasse": [
+      "TRAM_PASS"
+    ],
+    "NDD2": [
+      "MOTHWING_CLOAK"
+    ],
+    "ND2": [
+      "MOTHWING_CLOAK"
+    ],
+    "NCC1": [
+      "CRYSTAL_HEART"
+    ],
+    "NL11": [
+      "LUMAFLY_LANTERN"
+    ],
+    "ND3": [
+      "MOTHWING_CLOAK"
+    ],
+    "NEP": [
+      "MANTIS_CLAW"
+    ],
+    "NSD1": [
+      "SHADE_CLOAK"
+    ],
+    "ND4": [
+      "MOTHWING_CLOAK"
+    ],
+    "NSD": [
+      "SHADE_CLOAK"
+    ],
+    "NEP1": [
+      "MANTIS_CLAW"
+    ],
+    "NLI1": [
+      "ISMAS_TEAR"
+    ],
+    "ND5": [
+      "MOTHWING_CLOAK"
+    ],
+    "NDD1": [
+      "MOTHWING_CLOAK"
+    ],
+    "NLI": [
+      "ISMAS_TEAR"
+    ],
+    "NEP2": [
+      "MANTIS_CLAW"
+    ],
+    "NEP3": [
+      "MANTIS_CLAW"
+    ],
+    "NEP4": [
+      "MANTIS_CLAW"
+    ],
+    "NEP5": [
+      "MANTIS_CLAW"
+    ],
+    "NCH1": [
+      "CRYSTAL_HEART"
+    ],
+    "NCH2": [
+      "CRYSTAL_HEART"
+    ],
+    "NCH3": [
+      "CRYSTAL_HEART"
+    ],
+    "NDD3": [
+      "MOTHWING_CLOAK"
+    ],
+    "NPasse1": [
+      "TRAM_PASS"
+    ],
+    "NDD4": [
+      "MOTHWING_CLOAK"
+    ],
+    "NDD": [
+      "MOTHWING_CLOAK"
+    ],
+    "NCH4": [
+      "CRYSTAL_HEART"
+    ],
+    "NAM": [
+      "MONARCH_WINGS"
+    ],
+    "NCHorLI1": [
+      "CRYSTAL_HEART",
+      "ISMAS_TEAR"
+    ],
+    "NTrem1": [
+      "TRAM_PASS"
+    ],
+    "NL": [
+      "LUMAFLY_LANTERN"
+    ],
+    "NTrem": [
+      "TRAM_PASS"
+    ],
+    "NTrem2": [
+      "TRAM_PASS"
+    ],
+    "NCHorLI": [
+      "CRYSTAL_HEART",
+      "ISMAS_TEAR"
+    ],
+    "NCH": [
+      "CRYSTAL_HEART"
+    ]
+  },
+  "visit_requirements": {
+    "LUZ": [
+      "Slyloja",
+      "DinheiroLuz"
+    ],
+    "NBOSS": "BOSS",
+    "BrasaoCidade": "J1"
+  },
+  "levers": {
+    "AlavancaO": [
+      "O"
+    ],
+    "AlavancaR": [
+      "R"
+    ],
+    "AlavancaR1": [
+      "R1"
+    ],
+    "AlavancaP1_NCC1": [
+      "P1",
+      "NCC1"
+    ],
+    "AlavancaE2": [
+      "E2"
+    ],
+    "AlavancaM2": [
+      "M2"
+    ],
+    "AlavancaM4": [
+      "M4"
+    ],
+    "AlavancaAlavancaA6": [
+      "AlavancaA6"
+    ],
+    "AlavancaA6": [
+      "A6"
+    ],
+    "AlavancaK6": [
+      "K6"
+    ],
+    "AlavancaU61": [
+      "AlavancaU6"
+    ],
+    "AlavancaU6": [
+      "U6"
+    ],
+    "AlavancaAlavancaB4": [
+      "AlavancaB4"
+    ],
+    "AlavancaEstacao2": [
+      "Estacao2"
+    ],
+    "AlavancaC8": [
+      "C8"
+    ],
+    "AlavancaP8": [
+      "P8"
+    ],
+    "AlavancaQ8": [
+      "Q8"
+    ],
+    "AlavancaS8_A9": [
+      "S8",
+      "A9"
+    ],
+    "AlavancaB9": [
+      "B9"
+    ],
+    "AlavancaU": [
+      "U"
+    ],
+    "AlavancaP9": [
+      "P9"
+    ],
+    "AlavancaI10": [
+      "I10"
+    ],
+    "AlavancaIN10_D11": [
+      "IN10",
+      "D11"
+    ],
+    "AlavancaIR104": [
+      "IR104"
+    ],
+    "AlavancaA8": [
+      "A8"
+    ],
+    "AlavancaA2": [
+      "A2"
+    ],
+    "AlavancaW12": [
+      "W12"
+    ],
+    "AlavancaA14": [
+      "A14"
+    ],
+    "AlavancaO10_F11": [
+      "O10",
+      "F11"
+    ],
+    "AlavancaN14": [
+      "N14"
+    ]
+  },
+  "stations": [
+    "Estacao2",
+    "Estacao1",
+    "Estacao3",
+    "Estacao4",
+    "Estacao5",
+    "Estacao6",
+    "Estacao"
+  ],
+  "single_use_edges": [
+    [
+      "BrasaoCidade",
+      "C8"
+    ]
+  ],
+  "teleport_cost": 0.1,
+  "metadata": {
+    "description": "Configuração gerada automaticamente do grafo NetworkX",
+    "total_nodes": 448,
+    "total_edges": 971,
+    "generation_timestamp": "auto-generated"
+  }
+}

@@ -1,0 +1,5 @@
+min_grafo = 0
+max_grafo = 10000
+Start: START
+End: FINALBOSS
+requisitos: ["SONHADOR1", "SONHADORA2", "SONHADOR3", "FERRAOSONHOS"]
